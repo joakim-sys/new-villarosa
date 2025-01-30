@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<form action="{% pageurl page %}" method="POST">
+    {% csrf_token %}
+    {% if form.subject.errors %}
+        <ol>
+            {% for error in form.subject.errors %}
+                <li><strong>{{ error|escape }}</strong></li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+
+    {% for field in form %}
+        <div class="form-page__field" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+
+            {{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}
+
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text }}</p>
+            {% endif %}
+
+            {{ field }}
+        </div>
+    {% endfor %}
+
+    <input type="submit">
+</form>
+
+{% endblock %}

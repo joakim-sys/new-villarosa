@@ -1,0 +1,86 @@
+{% load static navigation_tags %}
+
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="top-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    {% with phone_number=settings.base.GenericSettings.phone_number email=settings.base.GenericSettings.email %}
+                    {% if phone_number or email %}
+                    <ul class="tn-left">
+                        {% if phone_number %}
+                        <li><i class="fa fa-phone"></i> {{phone_number}}</li>
+                        {% endif %}
+
+                        {% if email %}
+                        <li><i class="fa fa-envelope"></i> {{email}}</li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="col-lg-6">
+                    <div class="tn-right">
+                        {% with x_url=settings.base.GenericSettings.x_url instagram_url=settings.base.GenericSettings.instagram_url facebook_url=settings.base.GenericSettings.facebook_url %}
+
+                        {% if x_url or instagram_url or facebook_url %}
+                        <div class="top-social">
+                            {% if facebook_url %}
+                            <a href="{{facebook_url}}"><i class="fa fa-facebook"></i></a>
+                            {% endif %}
+                            {% if x_url %}
+                            <a href="{{x_url}}"><i class="fa fa-twitter"></i></a>
+                            {% endif %}
+                            <!--                            <a href="#"><i class="fa fa-tripadvisor"></i></a>-->
+                            {% if instagram_url %}
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                        <a href="{% url 'booking' %}" class="bk-btn">Book Now</a>
+                        <!--                        <div class="language-option">-->
+                        <!--                            <img src="{% static 'img/flag.jpg' %}" alt="">-->
+                        <!--                            <span>EN <i class="fa fa-angle-down"></i></span>-->
+                        <!--                            <div class="flag-dropdown">-->
+                        <!--                                <ul>-->
+                        <!--                                    <li><a href="#">Zi</a></li>-->
+                        <!--                                    <li><a href="#">Fr</a></li>-->
+                        <!--                                </ul>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-item">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="{% static 'img/logo.jpg' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="nav-menu">
+                        <nav class="mainmenu">
+                            <ul>
+                                <li class="{% if request.path == '/' %}active{% endif %}"><a href="/">Home</a></li>
+                                {% get_site_root as site_root %}
+                                {% top_menu parent=site_root calling_page=self %}
+                            </ul>
+                        </nav>
+                        <div class="nav-right search-switch">
+                            <i class="icon_search"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header End -->

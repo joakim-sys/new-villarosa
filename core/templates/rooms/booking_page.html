@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="booking-form">
+    <h3>{{page.title|default:"Book With Us"}}</h3>
+    <form action="#">
+                    {% csrf_token %}
+                    {% if form.subject.errors %}
+                        <ol>
+                            {% for error in form.subject.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ol>
+                    {% endif %}
+
+                    {{form.as_p }}
+                    {% for field in form %}
+                        <div class="form-page__field" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
+
+                            {{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}
+
+                            {% if field.help_text %}
+                                <p class="help">{{ field.help_text }}</p>
+                            {% endif %}
+
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+
+                    <input type="submit">
+    </form>
+</div>
+
+{% endblock %}

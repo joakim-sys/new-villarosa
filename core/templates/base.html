@@ -1,0 +1,95 @@
+{% load navigation_tags wagtailcore_tags static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %}
+        {% if page.seo_title %}
+        {{ page.seo_title }}
+        {% else %}
+        {{ page.title }}
+        {% endif %}
+        {% endblock %}
+        {% block title_suffix %}
+        | {{ settings.base.SiteSettings.title_suffix|default:"Villarosa" }}
+        {% endblock %}
+    </title>
+
+    <meta name="description"
+          content="{% block search_description %}{% if page.search_description %}{{ page.search_description }}{% endif %}{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {# Force all links in the live preview panel to be opened in a new tab #}
+    {% if request.in_preview_panel %}
+    <base target="_blank">
+    {% endif %}
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/extra.css' %}" type="text/css">
+
+        <!-- Vendor CSS Files -->
+        <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+
+    {% block extra_css %}
+    {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+</head>
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+
+{% include "includes/offcanvas.html" %}
+{% include "includes/header.html" %}
+
+{% block breadcrumbs %}
+    {% breadcrumbs %}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+{% endblock %}
+
+{% include "includes/footer.html" %}
+{% include "includes/search_modal.html" %}
+
+
+<!-- Js Plugins -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

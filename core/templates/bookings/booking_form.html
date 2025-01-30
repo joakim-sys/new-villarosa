@@ -1,0 +1,14 @@
+<!-- File: templates/bookings/booking_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Book a Room</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Book Now</button>
+  </form>
+  {% for message in messages %}
+    <p>{{ message }}</p>
+  {% endfor %}
+{% endblock %}

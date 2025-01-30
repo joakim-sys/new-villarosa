@@ -1,0 +1,94 @@
+{% load navigation_tags static %}
+
+<!-- Footer Section Begin -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="footer-text">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="ft-about">
+                        <div class="logo">
+                            <a href="#">
+                                <img src="{% static 'img/footer-logo.jpg' %}" alt="">
+                            </a>
+                        </div>
+                        {% get_footer_text %}
+                        {% with x_url=settings.base.GenericSettings.x_url instagram_url=settings.base.GenericSettings.instagram_url facebook_url=settings.base.GenericSettings.facebook_url %}
+                        {% if x_url or instagram_url or facebook_url %}
+                        <div class="fa-social">
+                            {% if facebook_url %}
+                            <a href="{{facebook_url}}"><i class="fa fa-facebook"></i></a>
+                            {% endif %}
+                            {% if x_url %}
+                            <a href="{{x_url}}"><i class="fa fa-twitter"></i></a>
+                            {% endif %}
+                            <!--                            <a href="#"><i class="fa fa-tripadvisor"></i></a>-->
+                            {% if instagram_url %}
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            {% endif %}
+<!--                            <a href="#"><i class="fa fa-tripadvisor"></i></a>-->
+                            <!--                            <a href="#"><i class="fa fa-youtube-play"></i></a>-->
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    {% with phone_number=settings.base.GenericSettings.phone_number email=settings.base.GenericSettings.email address=settings.base.GenericSettings.address %}
+                    {% if phone_number or email or address %}
+                    <div class="ft-contact">
+                        <h6>Contact Us</h6>
+                        <ul>
+                            {% if phone_number %}
+                            <li>{{phone_number}}</li>
+                            {% endif %}
+                            {% if email %}
+                            <li>{{email}}</li>
+                            {% endif %}
+                            {% if address %}
+                            <li>{{address}}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+<!--                    <div class="ft-newslatter">-->
+<!--                        <h6>New latest</h6>-->
+<!--                        <p>Get the latest updates and offers.</p>-->
+<!--                        <form action="#" class="fn-form">-->
+<!--                            <input type="text" placeholder="Email">-->
+<!--                            <button type="submit"><i class="fa fa-send"></i></button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div class="copyright-option">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-7">-->
+<!--                    <ul>-->
+<!--                        <li><a href="#">Contact</a></li>-->
+<!--                        <li><a href="#">Terms of use</a></li>-->
+<!--                        <li><a href="#">Privacy</a></li>-->
+<!--                        <li><a href="#">Environmental Policy</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="col-lg-5">-->
+<!--&lt;!&ndash;                    <div class="co-text">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>&ndash;&gt;-->
+<!--&lt;!&ndash;                            All rights reserved | This template is made with <i class="fa fa-heart"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                aria-hidden="true"></i> by <a&ndash;&gt;-->
+<!--&lt;!&ndash;                                    href="https://colorlib.com" target="_blank">Colorlib</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</footer>
+<!-- Footer Section End -->

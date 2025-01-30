@@ -1,0 +1,38 @@
+{% load wagtailcore_tags  wagtailimages_tags %}
+
+<!-- About Us Section Begin -->
+<section class="aboutus-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-text">
+                    <div class="section-title">
+                        <span>{{page.about_section_title|default:"About Us"}}</span>
+                        <h2>{{page.about_section_heading|default:"More about Villarosa"}}</h2>
+                    </div>
+                    {{page.about_section_body|richtext}}
+<!--                    <p class="f-para">Sona.com is a leading online accommodation site. We’re passionate about-->
+<!--                        travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41-->
+<!--                        languages.</p>-->
+
+                    {% if page.about_section_cta_link %}
+                    <a href="{% pageurl page.about_section_cta_link %}" class="primary-btn about-btn">{{page.about_section_cta|default:"Find more"}}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-pic">
+                    <div class="row">
+                        {% for block in page.about_section_images %}
+                        {% image block.value original as about_section_image %}
+                        <div class="col-sm-6">
+                            <img src="{{ about_section_image.url }}" alt="">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Us Section End -->
