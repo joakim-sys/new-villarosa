@@ -25,9 +25,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 if "PRIMARY_HOST" in os.environ:
     WAGTAILADMIN_BASE_URL = "https://{}".format(os.environ["PRIMARY_HOST"])
 
-STATICFILES_IGNORE_MISSING = True
 WHITENOISE_MANIFEST_STRICT = False
-MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
 MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
