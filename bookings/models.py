@@ -10,28 +10,28 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
+
 class Booking(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
     guest_name = models.CharField(max_length=255)
     guest_email = models.EmailField()
-    check_in_date = models.DateField()
-    check_out_date = models.DateField()
+    date_in = models.DateField('Check In', null=True)
+    date_out = models.DateField('Check Out', null=True)
     number_of_guests = models.IntegerField()
 
-    def clean(self):
-        # Validate that check-in is before check-out
-        if self.check_in_date >= self.check_out_date:
-            raise ValidationError("Check-out date must be after check-in date.")
-
-        # Check room availability
-        overlapping_bookings = Booking.objects.filter(
-            room=self.room,
-            check_in_date__lt=self.check_out_date,
-            check_out_date__gt=self.check_in_date
-        ).exists()
-
-        if overlapping_bookings:
-            raise ValidationError("The room is already booked for these dates.")
+    # def clean(self):
+    #     # Validate check-in before check-out
+    #     if self.date_in and self.date_out:
+    #         if self.date_in >= self.date_out:
+    #             raise ValidationError("Check-out date must be after check-in date.")
+    #
+    #     # Check for overlapping bookings
+    #     overlapping_bookings = Booking.objects.filter(
+    #         date_in__lt=self.date_out,
+    #         date_out__gt=self.date_in
+    #     ).exclude(id=self.id).exists()
+    #
+    #     if overlapping_bookings:
+    #         raise ValidationError("The room is already booked for these dates.")
 
     def __str__(self):
-        return f"{self.guest_name} - {self.room.name} ({self.check_in_date} to {self.check_out_date})"
+        return f"{self.guest_name} - {self.guest_email} ({self.date_in} to {self.date_out})"

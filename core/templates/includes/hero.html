@@ -8,41 +8,65 @@
                     <h1>{{page.hero_heading|default_if_none:"Welcome to Villarosa"}}</h1>
                     <p>{{page.hero_text|default_if_none:"Experience the charm of Spanish living at La Villa Rosa"}} </p>
                     {% if page.hero_cta_link %}
-                    <a href="{% pageurl page.hero_cta_link %}" class="primary-btn">{{page.hero_cta|default_if_none:"Explore More"}}</a>
+                    <a href="{% pageurl page.hero_cta_link %}" class="primary-btn">{{page.hero_cta|default_if_none:"Explore
+                        More"}}</a>
                     {% endif %}
                 </div>
             </div>
             <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                 <div class="booking-form">
-                    <h3>{{page.hero_form_heading|default_if_none:"Book With Us"}}</h3>
-                    <form action="#">
+                    <h3>{{ page.hero_form_heading|default_if_none:"Book With Us" }}</h3>
+                    <form action="{% url 'booking' %}" method="post">
+                        {% csrf_token %}
+
                         <div class="check-date">
-                            <label for="date-in">Check In:</label>
-                            <input type="text" class="date-input" id="date-in">
+                            <label for="date_in">Check In:</label>
+                            <input type="text" class="date-input" id="date_in" name="date_in"
+                                   placeholder="DD Month, YYYY">
                             <i class="icon_calendar"></i>
                         </div>
+
                         <div class="check-date">
-                            <label for="date-out">Check Out:</label>
-                            <input type="text" class="date-input" id="date-out">
+                            <label for="date_out">Check Out:</label>
+                            <input type="text" class="date-input" id="date_out" name="date_out"
+                                   placeholder="DD Month, YYYY">
                             <i class="icon_calendar"></i>
                         </div>
+
                         <div class="select-option">
-                            <label for="guest">Guests:</label>
-                            <select id="guest">
-                                <option value="">2 Adults</option>
-                                <option value="">3 Adults</option>
+                            <label for="number_of_guests">Number of Guests:</label>
+                            <select id="number_of_guests" name="number_of_guests">
+                                <option value="">Select</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
                             </select>
+
                         </div>
-                        <div class="select-option">
-                            <label for="room">Room:</label>
-                            <select id="room">
-                                <option value="">1 Room</option>
-                                <option value="">2 Room</option>
-                            </select>
+
+                        <div class="check-date">
+                            <label for="guest_name">Guest Name:</label>
+                            <input id="guest_name" name="guest_name" type="text" placeholder="Your Name">
                         </div>
-                        <button type="submit">{{page.hero_form_button_text|default_if_none:"Check Availability"}}</button>
+
+                        <div class="check-date">
+                            <label for="guest_email">Guest Email:</label>
+                            <input id="guest_email" name="guest_email" type="email" placeholder="Your Email">
+                        </div>
+
+                        <button type="submit">{{ page.hero_form_button_text|default_if_none:"Book Now" }}</button>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>

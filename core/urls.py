@@ -11,7 +11,7 @@ from wagtail.images.views.serve import ServeView
 from search import views as search_views
 
 urlpatterns = [
-    path('hotel/',include('rooms.urls')),
+    path('hotel/', include('bookings.urls')),
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),

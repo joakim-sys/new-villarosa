@@ -13,7 +13,7 @@
       {% for service in page.get_services %}
       <div class="col-md-6 {% if forloop.first %}{% else %}mt-4 mt-md-0{% endif %}">
         <div class="icon-box">
-          <i class="bi bi-{{service.icon|slugify}}"></i>
+          <i class="bi bi-{{service.icon}}"></i>
           <h4><a href="{% if service.service_page %}{% pageurl service.service_page %}{% else %}#{% endif %}">{{service.name|title}}</a></h4>
           <p>
             {{service.description|truncatewords:15}}
