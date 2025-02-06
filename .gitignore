@@ -17,6 +17,7 @@ collect_static/
 # Environment variables
 .env
 *.env
+env.txt
 
 # IDE/editor settings
 .vscode/
